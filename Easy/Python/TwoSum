@@ -1,0 +1,18 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        # Create a dictionary to store the complement (target - current number) and its index
+        complement = {}
+
+        # Iterate through the list of numbers
+        for i, num in enumerate(nums):
+            # Check if the current number exists in the dictionary as a complement
+            if num in complement:
+                # If a match is found, return the indices of the current number and its complement
+                return [i, complement[num]]
+            
+            # Otherwise, store the complement of the current number with its index
+            # Complement is calculated as (target - num)
+            complement[target - num] = i
+
+        # If no solution is found (unlikely in valid input), return an empty list
+        return []

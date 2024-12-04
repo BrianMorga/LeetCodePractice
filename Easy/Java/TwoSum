@@ -1,0 +1,24 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        // Create a HashMap to store the complement (target - current number) and its index
+        Map<Integer, Integer> complement = new HashMap<>();
+        
+        // Iterate through the array to find the two numbers that add up to the target
+        for (int i = 0; i < nums.length; i++) {
+            // Check if the current number exists in the HashMap as a complement
+            Integer complementIndex = complement.get(nums[i]);
+            
+            // If a match is found, return the indices of the current number and its complement
+            if (complementIndex != null) {
+                return new int[]{i, complementIndex};
+            }
+            
+            // Otherwise, store the complement of the current number with its index
+            // Complement is calculated as (target - current number)
+            complement.put(target - nums[i], i);
+        }
+        
+        // If no solution is found, return the original array (unlikely in proper use of this function)
+        return nums;
+    }
+}
