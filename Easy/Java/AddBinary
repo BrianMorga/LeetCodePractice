@@ -1,0 +1,40 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        // StringBuilder to construct the resulting binary sum
+        StringBuilder sb = new StringBuilder();
+
+        // Pointers to iterate through the strings a and b from the end
+        int i = a.length() - 1;
+        int j = b.length() - 1;
+
+        // Variable to store the carry for the addition
+        int next = 0;
+
+        // Loop through both strings while there are still digits to process
+        while (i >= 0 || j >= 0) {
+            int sum = next; // Start with the carry from the previous addition
+
+            // Add the digit from string a if i is within bounds
+            if (i >= 0) sum += a.charAt(i) - '0';
+
+            // Add the digit from string b if j is within bounds
+            if (j >= 0) sum += b.charAt(j) - '0';
+
+            // Append the least significant bit of the sum to the result
+            sb.append(sum % 2);
+
+            // Update the carry for the next iteration
+            next = sum / 2;
+
+            // Move to the previous digit in both strings
+            i--;
+            j--;
+        }
+
+        // If there's a leftover carry, append it to the result
+        if (next != 0) sb.append(next);
+
+        // Reverse the constructed result and return it as a string
+        return sb.reverse().toString();
+    }
+}
