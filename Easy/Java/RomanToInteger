@@ -1,0 +1,44 @@
+class Solution {
+    // Helper method to translate a Roman numeral character to its integer value
+    private int translate(char c) {
+        switch(c) {
+            case 'I': return 1;   // Roman numeral 'I' is 1
+            case 'V': return 5;   // Roman numeral 'V' is 5
+            case 'X': return 10;  // Roman numeral 'X' is 10
+            case 'L': return 50;  // Roman numeral 'L' is 50
+            case 'C': return 100; // Roman numeral 'C' is 100
+            case 'D': return 500; // Roman numeral 'D' is 500
+            case 'M': return 1000;// Roman numeral 'M' is 1000
+            default: return 0;    // Return 0 for invalid input
+        }
+    }
+
+    // Main method to convert a Roman numeral string to an integer
+    public int romanToInt(String s) {
+        int sum = 0; // Initialize the total sum to 0
+        int currentNum = translate(s.charAt(0)); // Translate the first character to its integer value
+
+        // Iterate through the Roman numeral string starting from the second character
+        for (int i = 1; i < s.length(); i++) {
+            int next = translate(s.charAt(i)); // Translate the next character to its integer value
+
+            // If the current numeral is smaller than the next one,
+            // it means we have a subtractive pair (e.g., IV, IX).
+            if (currentNum < next) {
+                sum -= currentNum; // Subtract the current numeral's value
+            } else {
+                // Otherwise, add the current numeral's value
+                sum += currentNum;
+            }
+
+            // Update the current numeral value to the next one for the next iteration
+            currentNum = next;
+        }
+
+        // Add the value of the last numeral to the total sum
+        sum += currentNum;
+
+        // Return the final computed sum
+        return sum;
+    }
+}

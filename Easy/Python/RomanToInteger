@@ -1,0 +1,27 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        Convert a Roman numeral string to an integer.
+
+        :type s: str
+        :rtype: int
+        """
+        # Dictionary to map Roman numerals to their integer values
+        roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+
+        # Initialize the total sum to 0
+        total = 0
+
+        # Iterate over each character in the Roman numeral string
+        for i in range(len(s)):
+            # If the current numeral is greater than the previous one, 
+            # it means we encountered a subtractive pair (e.g., IV, IX).
+            # Subtract twice the previous numeral's value since it was added before.
+            if i > 0 and roman[s[i]] > roman[s[i - 1]]:
+                total += roman[s[i]] - 2 * roman[s[i - 1]]
+            else:
+                # Otherwise, simply add the current numeral's value
+                total += roman[s[i]]
+
+        # Return the final computed total
+        return total
