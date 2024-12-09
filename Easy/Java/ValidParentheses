@@ -1,0 +1,28 @@
+class Solution {
+    public boolean isValid(String s) {
+        // Using a char array to simulate stack behavior
+        char[] stack = new char[s.length()];
+        int top = -1; // Stack pointer
+
+        for (char c : s.toCharArray()) {
+            // If it's an opening bracket, push it onto the "stack"
+            if (c == '(' || c == '{' || c == '[') {
+                stack[++top] = c; // Increment top and add to the stack
+            } 
+            // If it's a closing bracket, check for a match
+            else {
+                if (top == -1) { // Stack is empty, invalid
+                    return false;
+                }
+                char topChar = stack[top--]; // Pop the top element
+                if ((c == ')' && topChar != '(') ||
+                    (c == '}' && topChar != '{') ||
+                    (c == ']' && topChar != '[')) {
+                    return false;
+                }
+            }
+        }
+        // If stack is empty, all brackets were matched correctly
+        return top == -1;
+    }
+}
