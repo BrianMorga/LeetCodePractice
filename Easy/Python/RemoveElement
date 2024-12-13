@@ -1,0 +1,20 @@
+class Solution(object):
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        # Pointer for placing elements not equal to val
+        k = 0
+
+        # Iterate through the array
+        for i in range(len(nums)):
+            # If the current element is not equal to val
+            if nums[i] != val:
+                # Place it at the k-th position
+                nums[k] = nums[i]
+                # Increment the k pointer
+                k += 1
+
+        return k
