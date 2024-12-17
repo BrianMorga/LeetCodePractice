@@ -1,0 +1,11 @@
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # Trim any trailing spaces and split the string into words
+        words = s.strip().split()
+        
+        # Get the last word and return its length
+        return len(words[-1])
