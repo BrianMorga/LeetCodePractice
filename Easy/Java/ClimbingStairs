@@ -1,0 +1,19 @@
+class Solution {
+    public int climbStairs(int n) {
+         // If there's only 1 step, there's only one way to climb
+        if (n == 1) {
+            return 1;
+        }
+        
+        int first = 1, second = 2;
+        
+        // Iterate from the 3rd step up to the nth step
+        for (int i = 3; i <= n; i++) {
+            int current = first + second;
+            first = second;
+            second = current;
+        }
+        
+        return second;
+    }
+}
